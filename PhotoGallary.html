@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+        <link rel="stylesheet" href="index.css">
+    
+    <header>
+        <Center>
+            <img src="Logo.png" width="688" height="516">
+        </Center>
+    </header>
+
+  <head>
+<meta charset="UTF-8">
+<title>Photo Gallery</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  ;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Gallery grid */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Fullscreen viewer */
+
+.viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.viewer img {
+  max-width: 90%;
+  max-height: 80%;
+}
+
+.controls {
+  margin-top: 15px;
+}
+
+button {
+   background: linear-gradient(45deg, #ff6b6b, #ffb347);
+    color: white;
+    border:rgb(155, 12, 140);
+    padding: 14px 48px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Photo Gallery</h1>
+
+<div class="gallery">
+  <img src="Galery Photos/Logo copy.png" alt="Logo">
+  <img src="Galery Photos/1.jpg" alt="Photo 1">
+  <img src="Galery Photos/2.jpg" alt="Photo 2">
+  <img src="Galery Photos/3.jpg" alt="Photo 3">
+  <img src="Galery Photos/4.jpg" alt="Photo 4">
+  <img src="Galery Photos/5.jpg" alt="Photo 5">
+  <img src="Galery Photos/6.jpg" alt="Photo 6">
+  <img src="Galery Photos/7.jpg" alt="Photo 7">
+  <img src="Galery Photos/8.jpg" alt="Photo 8">
+  <img src="Galery Photos/9.jpg" alt="Photo 9">
+  <img src="Galery Photos/10.jpg" alt="Photo 10">
+  <img src="Galery Photos/11.jpg" alt="Photo 11">
+  <img src="Galery Photos/12.jpg" alt="Photo 12">
+  <img src="Galery Photos/13.jpg" alt="Photo 13">
+  <img src="Galery Photos/14.jpg" alt="Photo 14">
+  <img src="Galery Photos/15.JPG" alt="Photo 15">
+  <img src="Galery Photos/16.JPG" alt="Photo 16">
+</div>
+
+<!-- Fullscreen viewer -->
+
+<div class="viewer" id="viewer">
+  <span class="close" onclick="closeViewer()">✕</span>
+  <img id="viewerImg">
+
+  <div class="controls">
+    <button onclick="prev()">⬅ Prev</button>
+
+    <a id="download" download>
+      <button>Download</button>
+    </a>
+
+    <button onclick="next()">Next ➡</button>
+  </div>
+</div>
+
+<script>
+const images = document.querySelectorAll(".gallery img");
+const viewer = document.getElementById("viewer");
+const viewerImg = document.getElementById("viewerImg");
+const download = document.getElementById("download");
+
+let index = 0;
+
+images.forEach((img, i) => {
+  img.onclick = () => {
+    index = i;
+    show();
+    viewer.style.display = "flex";
+  };
+});
+
+function show() {
+  const src = images[index].src;
+  viewerImg.src = src;
+  download.href = src;
+}
+
+function closeViewer() {
+  viewer.style.display = "none";
+}
+
+function next() {
+  index = (index + 1) % images.length;
+  show();
+}
+
+function prev() {
+  index = (index - 1 + images.length) % images.length;
+  show();
+}
+
+/* Keyboard controls */
+
+document.addEventListener("keydown", e => {
+  if (viewer.style.display === "flex") {
+    if (e.key === "ArrowRight") next();
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "Escape") closeViewer();
+  }
+});
+</script>
+
+</body>

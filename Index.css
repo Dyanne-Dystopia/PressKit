@@ -1,0 +1,28 @@
+body{background: linear-gradient(45deg, #e807dc, #fbe048);}
+header{h3{color: black;}}
+header{h3{font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;}}
+header{font-size: 45pt;}
+body{button{font-size: 24pt;}} 
+body{button{color: rgb(155, 12, 140);}} 
+body{H1{font-size: 35pt;}}
+body{H2{font-size: 30pt;}}
+body{H3{font-size: 25pt;}}
+body{H4{font-size: 20pt;}}
+body{H5{font-size: 15pt;}}
+body{H6{font-size: 10pt;}}
+body{P{font-size: 20pt;}}
+body{Strong{font-size: 20pt;}}
+
+.fancy-button {
+    background: linear-gradient(45deg, #ff6b6b, #ffb347);
+    color: white;
+    border:rgb(155, 12, 140);
+    padding: 14px 48px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.fancy-button:hover {
+    transform: scale(1.05) ;
+}
